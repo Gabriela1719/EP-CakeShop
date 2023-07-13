@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "angular": "^1.6.10",
+    "react-bootstrap-typeahead": "^6.0.0-rc.2"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1"
+  }
+}

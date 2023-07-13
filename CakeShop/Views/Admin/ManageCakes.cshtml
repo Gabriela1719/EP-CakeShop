@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CakeNameIdDto>
+@{
+    ViewData["Title"] = "ManageCakes";
+}
+<h2>Upravljanje slasticama</h2>
+<br />
+<div>
+    <a asp-action="AddCake" class="btn buy-now-btn">Dodaj novu slasticu</a>
+</div>
+<br />
+<table class="table ">
+    <thead>
+        <tr>
+            <th>Naziv slastice</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cake in Model)
+        {
+            <tr id="cake-@cake.Id">
+                <td>@cake.Name</td>
+                <td>
+                    <a class="btn btn-link btn-no-effect" asp-action="EditCake" asp-route-id="@cake.Id">Uredi </a>
+                    |
+                    <button class="btn btn-link btn-no-effect deleteBtn" data-id="@cake.Id">Izbriši</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+
+        $(".deleteBtn").click((e) => {
+            const id = $(e.target).data("id");
+            if (!confirm("Jeste li sigurni da želite izbrisati?"))
+                return;
+
+            $.ajax({
+                url: '/admin/manageCakes/' + id,
+                type: 'DELETE',
+                success: () => {
+                    const target = $("#cake-" + id);
+                    $(target).fadeOut(500, () => $(target).remove());
+                },
+                error: (e) => {
+                    alert("Somthing Went Wrong", e);
+                }
+            });
+        });
+
+    </script>
+}

@@ -1,0 +1,17 @@
+﻿@model CakesListViewModel
+
+@if (Model.Cakes?.Count() > 0)
+{
+    <h1>@Model.CurrentCategory</h1>
+    <div class="row">
+        @foreach (var cake in Model.Cakes)
+        {
+            @await Html.PartialAsync("CakeView", cake);
+        }
+    </div>
+}
+else
+{
+    <h1>Slastice</h1>
+    <p>Žao nam je! Trenutno nema slastica u kategoriji: '@Model.CurrentCategory'. </p>
+}

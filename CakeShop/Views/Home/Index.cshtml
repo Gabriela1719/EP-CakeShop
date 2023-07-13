@@ -1,0 +1,20 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div>
+    @Html.Partial("carousel")
+</div>
+<br />
+<br />
+<div class="weekly-getting">
+    <h4>Posebna tjedna ponuda</h4>
+    <p>Samo za vas!</p>
+</div>
+<div class="row">
+    @foreach (var cake in Model.CakeOfTheWeek)
+    {
+        @Html.Partial("CakeView", cake);
+    }
+</div>

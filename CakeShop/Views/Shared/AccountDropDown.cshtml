@@ -1,0 +1,25 @@
+﻿<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    @(User.Identity.Name ?? "Korisnik")
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <a asp-action="login" asp-controller="account" class="dropdown-item">Prijava</a>
+        <a asp-action="register" asp-controller="account" class="dropdown-item">Registracija</a>
+    }
+    else
+    {
+        <a asp-action="myOrder" asp-controller="order" class="dropdown-item">Narudžbe</a>
+        <form method="post" asp-action="logout" asp-controller="account" class="no-padding-margin dropdown-item">
+            <button class="btn dropdown-item btn-no-effect">Odjava</button>
+        </form>
+
+        if (User.IsInRole("Admin"))
+        {
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" asp-action="AllOrders" asp-controller="admin">Pregled svih narudžbi</a>
+            <a class="dropdown-item" asp-action="ManageCakes" asp-controller="admin">Pregled slastica</a>
+        }
+    }
+</div>
