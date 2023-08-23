@@ -1,14 +1,11 @@
-﻿var socket = new WebSocket("ws://localhost:11911"); // Replace with your server URL
+﻿var socket = new WebSocket("ws://localhost:11911");
 
 socket.onopen = function () {
     console.log("WebSocket connection established.");
-    // You can send an initial message to the server here if needed
-    // Example: socket.send("Hello, server!");
 };
 
 socket.onmessage = function (event) {
     console.log("Received message from server:", event.data);
-    // Handle the received message from the server
 };
 
 socket.onclose = function () {
